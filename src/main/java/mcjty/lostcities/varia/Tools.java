@@ -16,7 +16,6 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -45,7 +44,7 @@ public class Tools {
 
     public static String stateToString(BlockState state) {
         StringBuilder stringbuilder = new StringBuilder();
-        stringbuilder.append(ForgeRegistries.BLOCKS.getKey(state.getBlock()));
+        stringbuilder.append(Registry.BLOCK.getKey(state.getBlock()));
         if (!state.getValues().isEmpty()) {
             stringbuilder.append('[');
             stringbuilder.append(state.getValues().entrySet().stream().map(PROPERTY_MAPPER).collect(Collectors.joining(",")));
@@ -66,7 +65,7 @@ public class Tools {
         }
 
         String converted = BlockStateData.upgradeBlock(s);
-        Block value = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(converted));
+        Block value = Registry.BLOCK.get(new ResourceLocation(converted));
         if (value == null) {
             throw new RuntimeException("Cannot find block: '" + s + "'!");
         }

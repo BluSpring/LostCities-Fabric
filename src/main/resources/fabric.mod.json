@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "lostcities",
+  "version": "6.0.17+mc1.19-fabric",
+  "name": "LostCities",
+  "description": "Generate cities all over the world",
+  "authors": [
+    "BluSpring",
+    "McJty"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "lostcities.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "mcjty.lostcities.LostCities"
+    ],
+    "client": [
+      "mcjty.lostcities.setup.ClientSetup"
+    ],
+    "preLaunch": [
+      "mcjty.lostcities.LostCitiesPreImp"
+    ]
+  },
+  "mixins": [
+    "lostcities.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.21",
+    "fabric": "*",
+    "minecraft": ">=1.19.2",
+    "forgeconfigapiport": ">=4.2.11",
+    "architectury": ">=6.5.85"
+  },
+  "accessWidener": "lostcities.accesswidener",
+  "custom": {
+    "loom:injected_interfaces": {
+      "net/minecraft/class_1297": ["mcjty/lostcities/forge/capabilities/CapabilityProviderInjection", "mcjty/lostcities/forge/capabilities/EntityCapabilityProviderImpl"]
+    }
+  }
+}

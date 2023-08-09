@@ -1,6 +1,8 @@
 package mcjty.lostcities.setup;
 
 
+import io.github.fabricators_of_create.porting_lib.util.LazyRegistrar;
+import io.github.fabricators_of_create.porting_lib.util.RegistryObject;
 import mcjty.lostcities.LostCities;
 import mcjty.lostcities.worldgen.LostCityFeature;
 import mcjty.lostcities.worldgen.LostCitySphereFeature;
@@ -14,24 +16,19 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.placement.CountPlacement;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
 
 import java.util.List;
 
 public class Registration {
 
-    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(Registry.FEATURE_REGISTRY, LostCities.MODID);
-    public static final DeferredRegister<ConfiguredFeature<?,?>> CONFIGURED_FEATURES = DeferredRegister.create(Registry.CONFIGURED_FEATURE_REGISTRY, LostCities.MODID);
-    public static final DeferredRegister<PlacedFeature> PLACED_FEATURES = DeferredRegister.create(Registry.PLACED_FEATURE_REGISTRY, LostCities.MODID);
+    public static final LazyRegistrar<Feature<?>> FEATURES = LazyRegistrar.create(Registry.FEATURE_REGISTRY, LostCities.MODID);
+    public static final LazyRegistrar<ConfiguredFeature<?,?>> CONFIGURED_FEATURES = LazyRegistrar.create(Registry.CONFIGURED_FEATURE_REGISTRY, LostCities.MODID);
+    public static final LazyRegistrar<PlacedFeature> PLACED_FEATURES = LazyRegistrar.create(Registry.PLACED_FEATURE_REGISTRY, LostCities.MODID);
 
     public static void init() {
-        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-        FEATURES.register(bus);
-        CONFIGURED_FEATURES.register(bus);
-        PLACED_FEATURES.register(bus);
+        FEATURES.register();
+        CONFIGURED_FEATURES.register();
+        PLACED_FEATURES.register();
     }
 
     public static final RegistryObject<LostCityFeature> LOSTCITY_FEATURE = FEATURES.register("lostcity", LostCityFeature::new);

@@ -1,15 +1,15 @@
 package mcjty.lostcities.varia;
 
+import io.github.fabricators_of_create.porting_lib.extensions.ITeleporter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.portal.PortalForcer;
-import net.minecraftforge.common.util.ITeleporter;
 
 import java.util.function.Function;
 
-public class CustomTeleporter extends PortalForcer {
+public class CustomTeleporter extends PortalForcer implements ITeleporter {
 
     public CustomTeleporter(ServerLevel world, double x, double y, double z) {
         super(world);

@@ -1,11 +1,11 @@
 package mcjty.lostcities.varia;
 
+import io.github.fabricators_of_create.porting_lib.util.ServerLifecycleHooks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.server.ServerLifecycleHooks;
 
 public class WorldTools {
 

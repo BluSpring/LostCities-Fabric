@@ -1,14 +1,17 @@
 package mcjty.lostcities.network;
 
+import me.pepperbell.simplenetworking.C2SPacket;
+import me.pepperbell.simplenetworking.SimpleChannel;
+import net.fabricmc.fabric.api.networking.v1.PacketSender;
+import net.minecraft.core.Registry;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.core.Registry;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.network.NetworkEvent;
 
-import java.util.function.Supplier;
-
-public class PacketRequestProfile {
+public class PacketRequestProfile implements C2SPacket {
 
     private final ResourceKey<Level> dimension;
 
@@ -24,7 +27,7 @@ public class PacketRequestProfile {
         this.dimension = dimension;
     }
 
-    public void handle(Supplier<NetworkEvent.Context> ctx) {
+    /*public void handle(Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
             // @todo 1.14
 //            ServerPlayerEntity player = ctx.get().getSender();
@@ -32,5 +35,14 @@ public class PacketRequestProfile {
 //            PacketHandler.INSTANCE.sendTo(new PacketReturnProfileToClient(dimension, profile.getName()), player.connection.netManager, NetworkDirection.PLAY_TO_CLIENT);
         });
         ctx.get().setPacketHandled(true);
+    }*/
+
+    @Override
+    public void handle(MinecraftServer server, ServerPlayer player, ServerGamePacketListenerImpl listener, PacketSender responseSender, SimpleChannel channel) {
+    }
+
+    @Override
+    public void encode(FriendlyByteBuf buf) {
+        toBytes(buf);
     }
 }

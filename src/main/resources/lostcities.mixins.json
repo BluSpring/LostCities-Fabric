@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "mcjty.lostcities.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+  ],
+  "mixins": [
+    "CreateWorldScreenAccessor",
+    "EntityMixin",
+    "MinecraftServerAccessor",
+    "MinecraftServerMixin",
+    "RegistryAccessMixin"
+  ],
+  "minVersion": "0.8"
+}

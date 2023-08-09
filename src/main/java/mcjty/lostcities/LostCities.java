@@ -1,29 +1,20 @@
 package mcjty.lostcities;
 
-import mcjty.lostcities.api.ILostCities;
-import mcjty.lostcities.api.ILostCitiesPre;
-import mcjty.lostcities.setup.*;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
+import mcjty.lostcities.setup.Config;
+import mcjty.lostcities.setup.CustomRegistries;
+import mcjty.lostcities.setup.ModSetup;
+import mcjty.lostcities.setup.Registration;
+import net.fabricmc.api.ModInitializer;
+import net.fabricmc.loader.api.FabricLoader;
+import net.minecraftforge.api.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLConstructModEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.nio.file.Path;
-import java.util.function.Function;
-import java.util.function.Supplier;
 
-@Mod(LostCities.MODID)
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-public class LostCities {
+public class LostCities implements ModInitializer {
     public static final String MODID = "lostcities";
 
     public static final Logger LOGGER = LogManager.getLogger(LostCities.MODID);
@@ -32,47 +23,45 @@ public class LostCities {
     public static LostCities instance;
     public static final LostCitiesImp lostCitiesImp = new LostCitiesImp();
 
-    public LostCities() {
+    @Override
+    public void onInitialize() {
         instance = this;
 
         Registration.init();
         CustomRegistries.init();
 
-        Path configPath = FMLPaths.CONFIGDIR.get();
+        Path configPath = FabricLoader.getInstance().getConfigDir();
         File dir = new File(configPath + File.separator + "lostcities");
         dir.mkdirs();
 
-        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.CLIENT_CONFIG, "lostcities/client.toml");
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_CONFIG, "lostcities/common.toml");
-        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.SERVER_CONFIG);
+        ModLoadingContext.registerConfig(MODID, ModConfig.Type.CLIENT, Config.CLIENT_CONFIG, "lostcities/client.toml");
+        ModLoadingContext.registerConfig(MODID, ModConfig.Type.COMMON, Config.COMMON_CONFIG, "lostcities/common.toml");
+        ModLoadingContext.registerConfig(MODID, ModConfig.Type.SERVER, Config.SERVER_CONFIG);
 
-        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-        bus.addListener(setup::init);
-        bus.addListener(this::processIMC);
-        bus.addListener(this::onConstructModEvent);
-
-        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-            FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::init);
-        });
+        setup.init();
+        onConstructModEvent();
+        processIMC();
     }
 
     public static Logger getLogger() {
         return LOGGER;
     }
 
-    private void onConstructModEvent(FMLConstructModEvent event) {
-        event.enqueueWork(() -> {
+    private void onConstructModEvent() {
+        /*event.enqueueWork(() -> {
             event.getIMCStream(ILostCities.GET_LOST_CITIES_PRE::equals).forEach(message -> {
                 Supplier<Function<ILostCitiesPre, Void>> supplier = message.getMessageSupplier();
                 supplier.get().apply(new LostCitiesPreImp());
             });
-        });
+        });*/
     }
 
-    private void processIMC(final InterModProcessEvent event) {
-        event.getIMCStream(ILostCities.GET_LOST_CITIES::equals).forEach(message -> {
+    private void processIMC() {
+        var impl = new LostCitiesImp();
+
+        /*event.getIMCStream(ILostCities.GET_LOST_CITIES::equals).forEach(message -> {
             Supplier<Function<ILostCities, Void>> supplier = message.getMessageSupplier();
             supplier.get().apply(new LostCitiesImp());
-        });
+        });*/
     }
 }

@@ -2,9 +2,10 @@ package mcjty.lostcities.network;
 
 
 import mcjty.lostcities.LostCities;
+import me.pepperbell.simplenetworking.SimpleChannel;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.network.NetworkRegistry;
-import net.minecraftforge.network.simple.SimpleChannel;
 
 public class PacketHandler {
     private static int ID = 12;
@@ -24,18 +25,18 @@ public class PacketHandler {
     }
 
     public static void registerMessages(String channelName) {
-        INSTANCE = NetworkRegistry.newSimpleChannel(new ResourceLocation(LostCities.MODID, channelName), () -> "1.0", s -> true, s -> true);
+        INSTANCE = new SimpleChannel(new ResourceLocation(LostCities.MODID, channelName));
         registerMessages();
     }
 
     public static void registerMessages() {
-        INSTANCE.registerMessage(nextID(), PacketRequestProfile.class,
-                PacketRequestProfile::toBytes,
-                PacketRequestProfile::new,
-                PacketRequestProfile::handle);
-        INSTANCE.registerMessage(nextID(), PacketReturnProfileToClient.class,
-                PacketReturnProfileToClient::toBytes,
-                PacketReturnProfileToClient::new,
-                PacketReturnProfileToClient::handle);
+        INSTANCE.registerC2SPacket(PacketRequestProfile.class, nextID(),
+                PacketRequestProfile::new);
+        INSTANCE.registerS2CPacket(PacketReturnProfileToClient.class, nextID(),
+                PacketReturnProfileToClient::new);
+
+        INSTANCE.initServerListener();
+        if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT)
+            INSTANCE.initClientListener();
     }
 }

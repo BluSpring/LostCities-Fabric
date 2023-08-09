@@ -1,8 +1,8 @@
 package mcjty.lostcities.playerdata;
 
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.common.capabilities.CapabilityToken;
+import mcjty.lostcities.forge.capabilities.Capability;
+import mcjty.lostcities.forge.capabilities.CapabilityManager;
+import mcjty.lostcities.forge.capabilities.CapabilityToken;
 
 public class PlayerProperties {
 

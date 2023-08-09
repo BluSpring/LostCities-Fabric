@@ -1,11 +1,10 @@
 package mcjty.lostcities.setup;
 
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.fabricmc.api.ClientModInitializer;
 
-public class ClientSetup {
-
-    public static void init(FMLClientSetupEvent event) {
-        MinecraftForge.EVENT_BUS.register(new ClientEventHandlers());
+public class ClientSetup implements ClientModInitializer {
+    @Override
+    public void onInitializeClient() {
+        new ClientEventHandlers();
     }
 }

@@ -1,5 +1,6 @@
 package mcjty.lostcities.worldgen;
 
+import io.github.fabricators_of_create.porting_lib.util.ServerLifecycleHooks;
 import mcjty.lostcities.LostCities;
 import mcjty.lostcities.api.LostChunkCharacteristics;
 import mcjty.lostcities.worldgen.lost.BuildingInfo;
@@ -7,13 +8,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.server.ServerLifecycleHooks;
 import org.apache.logging.log4j.Logger;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
 public class ErrorLogger {
 

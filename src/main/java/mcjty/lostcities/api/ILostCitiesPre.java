@@ -1,5 +1,7 @@
 package mcjty.lostcities.api;
 
+import net.fabricmc.loader.api.entrypoint.PreLaunchEntrypoint;
+
 import java.util.function.Consumer;
 
 /**
@@ -7,7 +9,7 @@ import java.util.function.Consumer;
  * mod construction. It allows another mod to register new standard profiles right
  * before the FMLCommonSetupEvent
  */
-public interface ILostCitiesPre {
+public interface ILostCitiesPre extends PreLaunchEntrypoint {
 
     /**
      * Register code that will be executed when Lost Cities is ready to register profiles.

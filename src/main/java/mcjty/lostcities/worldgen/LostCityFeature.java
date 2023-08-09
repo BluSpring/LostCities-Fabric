@@ -5,6 +5,7 @@ import mcjty.lostcities.config.LostCityProfile;
 import mcjty.lostcities.config.ProfileSetup;
 import mcjty.lostcities.setup.Config;
 import mcjty.lostcities.worldgen.lost.cityassets.AssetRegistries;
+import me.alphamode.forgetags.Tags;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.WorldGenRegion;
@@ -15,7 +16,6 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import net.minecraftforge.common.Tags;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;

@@ -1,5 +1,6 @@
 package mcjty.lostcities.editor;
 
+import mcjty.lostcities.mixin.MinecraftServerAccessor;
 import mcjty.lostcities.worldgen.IDimensionInfo;
 import mcjty.lostcities.worldgen.lost.BuildingInfo;
 import mcjty.lostcities.worldgen.lost.cityassets.BuildingPart;
@@ -28,7 +29,7 @@ public class Editor {
 
         CompiledPalette finalPalette = palette;
 
-        player.level.getServer().doRunTask(new TickTask(3, () -> {
+        ((MinecraftServerAccessor) player.level.getServer()).callDoRunTask(new TickTask(3, () -> {
             for (int y = 0; y < part.getSliceCount(); y++) {
                 for (int x = 0; x < part.getXSize(); x++) {
                     for (int z = 0; z < part.getZSize(); z++) {

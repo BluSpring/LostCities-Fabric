@@ -1,5 +1,6 @@
 package mcjty.lostcities.worldgen.lost.cityassets;
 
+import io.github.fabricators_of_create.porting_lib.util.ServerLifecycleHooks;
 import mcjty.lostcities.LostCities;
 import mcjty.lostcities.api.ILostCityAsset;
 import mcjty.lostcities.varia.Tools;
@@ -13,7 +14,6 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.server.ServerLifecycleHooks;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;

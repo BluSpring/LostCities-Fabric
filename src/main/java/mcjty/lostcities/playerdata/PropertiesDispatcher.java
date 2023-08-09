@@ -1,11 +1,11 @@
 package mcjty.lostcities.playerdata;
 
+import io.github.fabricators_of_create.porting_lib.extensions.INBTSerializable;
+import io.github.fabricators_of_create.porting_lib.util.LazyOptional;
+import mcjty.lostcities.forge.capabilities.Capability;
+import mcjty.lostcities.forge.capabilities.ICapabilityProvider;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.common.util.INBTSerializable;
-import net.minecraftforge.common.util.LazyOptional;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

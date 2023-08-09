@@ -6,6 +6,10 @@ import mcjty.lostcities.api.ILostCityProfileSetup;
 import java.util.function.Consumer;
 
 public class LostCitiesPreImp implements ILostCitiesPre {
+    @Override
+    public void onPreLaunch() {
+        //registerProfileSetupCallback();
+    }
 
     @Override
     public void registerProfileSetupCallback(Consumer<ILostCityProfileSetup> runnable) {
