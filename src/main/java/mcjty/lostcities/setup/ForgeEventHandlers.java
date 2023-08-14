@@ -6,8 +6,6 @@ import io.github.fabricators_of_create.porting_lib.event.common.EntityEvents;
 import mcjty.lostcities.LostCities;
 import mcjty.lostcities.commands.ModCommands;
 import mcjty.lostcities.config.LostCityProfile;
-import mcjty.lostcities.forge.capabilities.AttachCapabilitiesEvent;
-import mcjty.lostcities.forge.capabilities.ICapabilityProvider;
 import mcjty.lostcities.forge.events.CreateWorldSpawnCallback;
 import mcjty.lostcities.playerdata.PlayerProperties;
 import mcjty.lostcities.playerdata.PropertiesDispatcher;
@@ -41,6 +39,8 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ServerLevelData;
+import xyz.bluspring.forgecapabilities.capabilities.AttachCapabilitiesCallback;
+import xyz.bluspring.forgecapabilities.capabilities.ICapabilityProvider;
 
 import javax.annotation.Nonnull;
 import java.util.HashMap;
@@ -63,7 +63,7 @@ public class ForgeEventHandlers {
             onPlayerCloned(oldPlayer, newPlayer, !wonGame);
         });
 
-        AttachCapabilitiesEvent.EVENT.register((object, capabilities, listeners) -> {
+        AttachCapabilitiesCallback.EVENT.register((object, capabilities, listeners) -> {
             onEntityConstructing(object, capabilities);
         });
 

@@ -6,7 +6,6 @@
   ],
   "mixins": [
     "CreateWorldScreenAccessor",
-    "EntityMixin",
     "MinecraftServerAccessor",
     "MinecraftServerMixin",
     "RegistryAccessMixin"

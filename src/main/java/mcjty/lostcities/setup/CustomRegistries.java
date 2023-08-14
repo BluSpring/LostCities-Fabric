@@ -4,16 +4,20 @@ import com.mojang.serialization.Codec;
 import io.github.fabricators_of_create.porting_lib.util.LazyRegistrar;
 import mcjty.lostcities.LostCities;
 import mcjty.lostcities.worldgen.lost.regassets.*;
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.levelgen.GenerationStep;
+import xyz.bluspring.forgebiomemodifiers.registries.DatapackRegistryInfo;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Supplier;
 
 public class CustomRegistries {
-    private static class RegistryBuilder<T> {
+    public static class RegistryBuilder<T> {
         Codec<T> codec;
 
         public RegistryBuilder() {}
@@ -24,18 +28,13 @@ public class CustomRegistries {
         }
     }
 
-    public record DatapackRegistryInfo<E>(
-            ResourceKey<? extends Registry<E>> registryKey,
-            Codec<E> codec
-    ) {}
-
     private static final List<DatapackRegistryInfo<?>> datapackRegistryInfoList = new LinkedList<>();
 
     public static List<DatapackRegistryInfo<?>> getDatapackRegistryInfos() {
         return datapackRegistryInfoList;
     }
 
-    private static <T> Supplier<Registry<T>> makeRegistry(LazyRegistrar<T> registrar, Supplier<RegistryBuilder<T>> builderSupplier) {
+    public static <T> Supplier<Registry<T>> makeRegistry(LazyRegistrar<T> registrar, Supplier<RegistryBuilder<T>> builderSupplier) {
         var registry = registrar.makeRegistry();
 
         datapackRegistryInfoList.add(new DatapackRegistryInfo<>(registrar.getRegistryKey(), builderSupplier.get().codec));
@@ -105,6 +104,9 @@ public class CustomRegistries {
         PREDEFINEDCITIES_DEFERRED_REGISTER.register();
         PREDEFINEDSPHERES_DEFERRED_REGISTER.register();
         SCATTERED_DEFERRED_REGISTER.register();
+
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Decoration.RAW_GENERATION, Registration.PLACED_LOSTCITY_FEATURE.getKey());
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Decoration.VEGETAL_DECORATION, Registration.PLACED_LOSTCITY_SPHERE_FEATURE.getKey());
     }
 
 }

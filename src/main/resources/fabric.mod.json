@@ -33,10 +33,5 @@
     "forgeconfigapiport": ">=4.2.11",
     "architectury": ">=6.5.85"
   },
-  "accessWidener": "lostcities.accesswidener",
-  "custom": {
-    "loom:injected_interfaces": {
-      "net/minecraft/class_1297": ["mcjty/lostcities/forge/capabilities/CapabilityProviderInjection", "mcjty/lostcities/forge/capabilities/EntityCapabilityProviderImpl"]
-    }
-  }
+  "accessWidener": "lostcities.accesswidener"
 }

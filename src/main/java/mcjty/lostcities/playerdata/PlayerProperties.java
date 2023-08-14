@@ -1,8 +1,8 @@
 package mcjty.lostcities.playerdata;
 
-import mcjty.lostcities.forge.capabilities.Capability;
-import mcjty.lostcities.forge.capabilities.CapabilityManager;
-import mcjty.lostcities.forge.capabilities.CapabilityToken;
+import xyz.bluspring.forgecapabilities.capabilities.Capability;
+import xyz.bluspring.forgecapabilities.capabilities.CapabilityManager;
+import xyz.bluspring.forgecapabilities.capabilities.CapabilityToken;
 
 public class PlayerProperties {
 
