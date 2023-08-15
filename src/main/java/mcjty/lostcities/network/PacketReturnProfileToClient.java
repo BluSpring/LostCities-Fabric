@@ -2,6 +2,8 @@ package mcjty.lostcities.network;
 
 import me.pepperbell.simplenetworking.S2CPacket;
 import me.pepperbell.simplenetworking.SimpleChannel;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientPacketListener;
@@ -38,6 +40,7 @@ public class PacketReturnProfileToClient implements S2CPacket {
         ctx.get().setPacketHandled(true);
     }*/
 
+    @Environment(EnvType.CLIENT)
     @Override
     public void handle(Minecraft client, ClientPacketListener listener, PacketSender responseSender, SimpleChannel channel) {
     }
